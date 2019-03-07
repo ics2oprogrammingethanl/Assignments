@@ -19,6 +19,7 @@ local reginald = display.newImageRect ( "reginald.png", 350, 197 )
 -- Spawn point and rotation
 reginald:translate( 500, 500 )
 reginald.rotation = 0
+reginald.rotation = 0.5
 
 -- reginald coordinates/anchor
 reginald.anchorX = display.contentWidth/3
@@ -26,9 +27,9 @@ reginald.anchorY = display.contentHeight/3
 
 -- start the physics (all of it)
 physics.start(true)
-physics.setGravity(-8, -8)
+physics.setGravity(-7, -7)
 
-physics.addBody( reginald, {bounce=1} )
+physics.addBody( reginald, {bounce=0.7} )
 
 --Create global screen boundaries
 local leftWall = display.newRect(0, 0, 3, 1536)
