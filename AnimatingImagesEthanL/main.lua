@@ -18,7 +18,6 @@ local physics = require( "physics" )
 local reginald = display.newImageRect ( "reginald.png", 350, 197 )
 -- Spawn point and rotation
 reginald:translate( 500, 500 )
-reginald.rotation = 0
 reginald.rotation = 0.5
 
 -- reginald coordinates/anchor
