@@ -63,44 +63,52 @@ local function AskQuestion()
  randomOperator = math.random(1, 4)
 
  -- generate 2 random numbers between a max. and a min. number
- randomNumber1 = math.random(6, 10)
- randomNumber2 = math.random(1, 6)
+ randomNumberadd1 = math.random(11, 20)
+ randomNumberadd2 = math.random(1, 11)
 
+ randomNumbersub1 = math.random(11, 20)
+ randomNumbersub2 = math.random(1, 11)
+
+ randomNumbermultiply1 = math.random(6, 10)
+ randomNumbermultiply2 = math.random(1, 6)
+
+ randomNumberdiv1 = math.random(2, 100)
+ randomNumberdiv2 = math.random(1, 100)
  -- if the random operator is 1, then do addition
  if (randomOperator == 1) then
 
   -- calculate the correct answer
-  correctAnswer = randomNumber1 + randomNumber2
+  correctAnswer = randomNumberadd1 + randomNumberadd2
 
  -- create question in text object
- questionObject.text = randomNumber1 .. " + " .. randomNumber2 .. " = "
+ questionObject.text = randomNumberadd1 .. " + " .. randomNumberadd2 .. " = "
 
  -- otherwise, if the random operator is 2, do subtraction
  elseif (randomOperator == 2) then
 
   -- calculate the correct answer
-  correctAnswer = randomNumber1 - randomNumber2
+  correctAnswer = randomNumbersub1 - randomNumbersub2
 
   -- create question in text object
-  questionObject.text = randomNumber1 .. " - " .. randomNumber2 .. " = "
+  questionObject.text = randomNumbersub1 .. " - " .. randomNumbersub2 .. " = "
 
   -- otherwise, if the random operator is 3, do multiplication
  elseif (randomOperator == 3) then
 
   -- calculate the correct answer
-  correctAnswer = randomNumber1 * randomNumber2
+  correctAnswer = randomNumbermultiply1 * randomNumbermultiply2
 
   -- create question in text object
-  questionObject.text = randomNumber1 .. " * " .. randomNumber2 .. " = "
+  questionObject.text = randomNumbermultiply1 .. " * " .. randomNumbermultiply2 .. " = "
 
   -- otherwise, if the random operator is 4, do division
  elseif (randomOperator == 4) then
 
   -- calculate the correct answer
-  correctAnswer = roundToFirstDecimal(randomNumber1 / randomNumber2)
+  correctAnswer = roundToFirstDecimal(randomNumberdiv1 / randomNumberdiv2)
 
   -- create question in text object
-  questionObject.text = randomNumber1 .. " / " .. randomNumber2 .. " = "
+  questionObject.text = randomNumberdiv1 .. " / " .. randomNumberdiv2 .. " = "
 	end
 end
 
@@ -189,7 +197,7 @@ local function NumericFieldListener( event )
 	incorrectSoundChannel = false
 	deathSoundChannel = audio.play(deathSound)
 	end
-
+-- This controls hearts and game over screen
 	if (lives == 2) then
 	heart3.isVisible = false
 	elseif (lives == 1) then
@@ -205,7 +213,7 @@ local function NumericFieldListener( event )
 	correctObject.isVisible = false
 	incorrectObject.isVisible = false
 	end
-
+-- This controls the win screen
 	if (points == 5) then
 		win.isVisible = true
 		numericField.isVisible = false
