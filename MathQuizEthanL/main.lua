@@ -18,7 +18,7 @@ display.setDefault("background", 255/255, 125/255, 0/255)
 -- create local variables
 local questionObject
 local correctObject
-local incorrectObject
+local incorrectObject = display.newText("" , display.contentWidth/2, 534, nil, 30)
 local numericField
 local randomNumber1
 local randomNumber2
@@ -176,26 +176,28 @@ local function NumericFieldListener( event )
 	userAnswer = tonumber(event.target.text)
 	-- if the users answer and the correct answer are the same:
 	if (userAnswer == correctAnswer) then
-	incorrectObject.isVisible = false
-	correctObject.isVisible = true
-	timer.performWithDelay(3000, HideCorrect)
-    correctSoundChannel = audio.play(correctSound)
-    timer.pause(countDownTimer)
-    timer.performWithDelay(2560, KeepTime)
-    points = points + 1
-    pointsObject.text = "Numbers Correct: " .. points
+		incorrectObject.isVisible = false
+		correctObject.isVisible = true
+		timer.performWithDelay(3000, HideCorrect)
+   		correctSoundChannel = audio.play(correctSound)
+    	timer.pause(countDownTimer)
+    	timer.performWithDelay(2560, KeepTime)
+    	points = points + 1
+    	pointsObject.text = "Numbers Correct: " .. points
 
-	elseif (userAnswer ~= correctAnswer) then
-	incorrectObject.isVisible = true
-	correctObject.isVisible = false
-	timer.performWithDelay(3000, HideIncorrect)
-	lives = lives - 1
-	timer.pause(countDownTimer)
-	incorrectSoundChannel = audio.play(incorrectSound)
-	timer.performWithDelay(2560, KeepTime)
-	elseif (lives == 0) then
-	incorrectSoundChannel = false
-	deathSoundChannel = audio.play(deathSound)
+	else
+		incorrectObject.isVisible = true
+		correctObject.isVisible = false
+		timer.performWithDelay(3000, HideIncorrect)
+		lives = lives - 1
+		timer.pause(countDownTimer)
+		incorrectSoundChannel = audio.play(incorrectSound)
+		timer.performWithDelay(2560, KeepTime)
+		incorrectObject.text = "Incorrect! The correct answer is " .. correctAnswer
+	end
+	if (lives == 0) then
+		incorrectSoundChannel = false
+		deathSoundChannel = audio.play(deathSound)
 	end
 -- This controls hearts and game over screen
 	if (lives == 2) then
@@ -269,7 +271,7 @@ numericField.inputType = "decimal"
 numericField:addEventListener( "userInput", NumericFieldListener )
 
 -- create the incorrect text ojbect and make it invisible
-incorrectObject = display.newText( "Incorrect", display.contentWidth/2, display.contentHeight*2/3, nil, 50 )
+incorrectObject = display.newText( "Incorrect! The correct answer is: ", display.contentWidth/2, display.contentHeight*2/3, nil, 50 )
 incorrectObject:setTextColor(255/255, 255/255, 0/255)
 incorrectObject.isVisible = false
 
